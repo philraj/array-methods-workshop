@@ -179,3 +179,43 @@ function countChars (string) {
 }
 
 console.log(countChars("abbcccddddeeeeeffffffggggggghhhhhhhh"));
+
+
+
+
+
+//Exercise 9
+var people = [
+  {
+    "id": "KeXoYg92is",
+    "firstName": "John",
+    "lastName": "Smith",
+    "email": "john@smith.com"
+  },
+  {
+    "id": "NkALmSWtUp",
+    "firstName": "Donald",
+    "lastName": "Duck",
+    "email": "don@disney.com"
+  },
+  {
+    "id": "m7LPbJYSUg",
+    "firstName": "John",
+    "lastName": "Vader",
+    "email": "vader@darkside.com"
+  }
+];
+
+function peopleByID (array) {
+    var result = {};
+    
+    array.forEach( function(person) {
+        result[person.id] = person;
+    });
+    
+    return result;
+}
+
+console.log(JSON.stringify(peopleByID(people)));
+
+
