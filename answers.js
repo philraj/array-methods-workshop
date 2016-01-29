@@ -72,3 +72,79 @@ function countVowels (string) {
 }
 
 console.log(countVowels("The number of vowels in this string is 10."));
+
+
+
+
+
+/*Write a function called highLow that takes an array of numbers, and returns an object with a property highest containing the highest number, and a property lowest containing the lowest number, using Array.prototype.reduce.
+For example, starting with [1, -10, 20, 40, 5], your function should return {highest: 40, lowest: -10}.
+Hint: Javascript has a special value called Infinity, which is higher than any other number. See if you can initialize your reduce accumulator with Infinity and -Infinity :)*/
+function highLow (array) {
+    var result = {}
+    
+    result.highest = array.reduce( function(prev, curr) {
+        return Math.max(prev, curr);
+    }, -Infinity)
+    
+    result.lowest = array.reduce( function(prev, curr) {
+        return Math.min(prev, curr);
+    }, Infinity)
+    
+    return result;
+}
+
+console.log(highLow([1,-10,20,40,5]));
+
+
+
+
+
+/*Expanding on exercise 6, write a function called highLowTwo that takes an array of numbers, and returns the higest, second highest, lowest, and second lowest numbers.
+For example, starting with [1, -10, 20, 40, 5], your function should return:
+{
+  "highest": 40,
+  "secondHighest": 20,
+  "lowest": -10,
+  "secondLowest": 5
+}*/
+function highLowTwo (array) {
+    var result = {}
+    
+    result.highest = array.reduce( function(prev, curr, i) {
+        if (curr > prev) {
+            result.highestIndex = i;
+            return curr;
+        }
+        else {
+            return prev;
+        }
+    }, -Infinity);
+    
+    result.lowest = array.reduce( function(prev, curr, i) {
+        if (curr < prev) {
+            result.lowestIndex = i;
+            return curr;
+        }
+        else {
+            return prev;
+        }
+    }, Infinity);
+    
+    result.secondHighest = array.reduce( function(prev, curr, i) {
+        if (i === result.highestIndex) return prev;
+        else return Math.max(prev, curr);
+    }, -Infinity);
+    
+    result.secondLowest = array.reduce( function(prev, curr, i) {
+        if (i === result.lowestIndex) return prev;
+        else return Math.min(prev, curr);
+    }, Infinity)
+    
+    delete result.highestIndex;
+    delete result.lowestIndex;
+    
+    return result;
+}
+
+console.log(highLowTwo([-55, -55, 1, -10, 20, 40, 5]));
