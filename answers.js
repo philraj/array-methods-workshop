@@ -12,6 +12,8 @@ printPositives(nums);
 
 
 
+
+
 //Similar to the previous exercise, write a function called getPositives that takes an array and uses its filter method to return a new array with only the positive numbers
 function getPositives (array) {
     return array.filter( function (value) {
@@ -20,6 +22,8 @@ function getPositives (array) {
 }
 
 console.log("getPositives(): " + getPositives(nums));
+
+
 
 
 
@@ -32,3 +36,28 @@ Array.prototype.filterArray = Array.prototype.filter;
 console.log("filterArray(): " + nums.filterArray( function(value) { 
     return true;
 } ));
+
+
+
+
+
+/*Write a function called longestWord that takes a string as argument, and returns the longest word in the string. You should use Array.prototype.reduce to do your work.
+Hint: You can use String.prototype.split to split the string into an array of words.*/
+function longestWord (string) {
+    var words = string.split(' ');
+    
+    return words.reduce( function(prev, curr) {
+        if (prev.length > curr.length) return prev;
+        else return curr;
+    });
+}
+
+console.log(longestWord("This is a phrase to test the longestWord function."));
+
+
+
+
+
+/*
+
+
