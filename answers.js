@@ -148,3 +148,34 @@ function highLowTwo (array) {
 }
 
 console.log(highLowTwo([-55, -55, 1, -10, 20, 40, 5]));
+
+
+
+
+
+/*Write a function called countChars that takes a string, and returns an object where the keys are letters, and the value is the number of times that letter appears.
+For example, with input "hello world", the output should be:
+{
+  "h": 1,
+  "e": 1,
+  "l": 3,
+  "o": 2,
+  "w": 1,
+  "r": 1,
+  "d": 1
+}
+NOTE: Unlike arrays, objects don't have any ordering on them. When you print your object on the console, your keys may be displayed in a different order, and it does not matter.*/
+function countChars (string) {
+    var result = {};
+    
+    var chars = string.split('');
+    
+    chars.forEach( function(value) {
+        if (result.hasOwnProperty(value)) result[value]++;
+        else result[value] = 1;
+    })
+    
+    return result;
+}
+
+console.log(countChars("abbcccddddeeeeeffffffggggggghhhhhhhh"));
