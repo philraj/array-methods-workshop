@@ -216,6 +216,25 @@ function peopleByID (array) {
     return result;
 }
 
-console.log(JSON.stringify(peopleByID(people)));
+console.log(JSON.stringify( peopleByID(people) ));
 
 
+
+
+
+//Exercise 10
+function peopleByName (array) {
+    var result = {};
+    
+    array.forEach( function(person) {
+        var property = person.firstName;
+        
+        if (!result.hasOwnProperty( property )) result[property] = [];
+        
+        result[property].push(person);
+    });
+    
+    return result;
+}
+
+console.log(JSON.stringify( peopleByName(people) ));
