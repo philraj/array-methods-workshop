@@ -109,42 +109,32 @@ For example, starting with [1, -10, 20, 40, 5], your function should return:
   "secondLowest": 5
 }*/
 function highLowTwo (array) {
-    var result = {}
+    var result = {
+        highest: -Infinity,
+        secondHighest: -Infinity,
+        secondLowest: Infinity,
+        lowest: Infinity
+    };
     
-    result.highest = array.reduce( function(prev, curr, i) {
-        if (curr > prev) {
-            result.highestIndex = i;
-            return curr;
+    return array.reduce( function( acc, val) {
+        if (val > acc.highest) {
+            acc.secondHighest = acc.highest;
+            acc.highest = val;
         }
-        else {
-            return prev;
+        else if (val > acc.secondHighest) {
+            acc.secondHighest = val;
         }
-    }, -Infinity);
-    
-    result.lowest = array.reduce( function(prev, curr, i) {
-        if (curr < prev) {
-            result.lowestIndex = i;
-            return curr;
+        
+        if (val < acc.lowest) {
+            acc.secondLowest = acc.lowest;
+            acc.lowest = val;
         }
-        else {
-            return prev;
+        else if (val < acc.secondLowest) {
+            acc.secondLowest = val;
         }
-    }, Infinity);
-    
-    result.secondHighest = array.reduce( function(prev, curr, i) {
-        if (i === result.highestIndex) return prev;
-        else return Math.max(prev, curr);
-    }, -Infinity);
-    
-    result.secondLowest = array.reduce( function(prev, curr, i) {
-        if (i === result.lowestIndex) return prev;
-        else return Math.min(prev, curr);
-    }, Infinity)
-    
-    delete result.highestIndex;
-    delete result.lowestIndex;
-    
-    return result;
+        
+        return acc;
+    }, result); 
 }
 
 console.log(highLowTwo([-55, -55, 1, -10, 20, 40, 5]));
