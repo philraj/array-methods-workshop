@@ -197,13 +197,11 @@ var people = [
 ];
 
 function peopleByID (array) {
-    var result = {};
     
-    array.forEach( function(person) {
-        result[person.id] = person;
-    });
-    
-    return result;
+    return array.reduce( function(obj, person) {
+        obj[person.id] = person;
+        return obj;
+    }, {});
 }
 
 console.log(JSON.stringify( peopleByID(people) ));
@@ -214,17 +212,15 @@ console.log(JSON.stringify( peopleByID(people) ));
 
 //Exercise 10
 function peopleByName (array) {
-    var result = {};
     
-    array.forEach( function(person) {
-        var property = person.firstName;
+    return array.reduce( function(result, person) {
+        var prop = person.firstName;
         
-        if (!result.hasOwnProperty( property )) result[property] = [];
+        if (!result.hasOwnProperty( prop )) result[prop] = [];
+        result[prop].push(person);
         
-        result[property].push(person);
-    });
-    
-    return result;
+        return result;
+    }, {});
 }
 
 console.log(JSON.stringify( peopleByName(people) ));
